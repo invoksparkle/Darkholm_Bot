@@ -4,7 +4,7 @@ from discord.ext import commands
 from config import settings
 import os
 
-intents = discord.Intents(members=True, presences=True)
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=settings['prefix'], intents=intents)
 
 
