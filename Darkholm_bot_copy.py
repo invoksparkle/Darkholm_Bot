@@ -1,17 +1,20 @@
 ##Импорты
+import os
 import discord
+from discord import FFmpegPCMAudio
 from discord.ext import commands, tasks
 from config import settings
-
+import youtube_dl
+import ffmpeg
+ 
 ##Youtube
 
 
 
 
 ##Тело бота
-intents = discord.Intents.default()
-intents.members = True  
-bot = commands.Bot(command_prefix= settings['prefix'], intents=intents)
+     
+bot = commands.Bot(command_prefix= settings['prefix'])
 
 
 ##Основные кооманды
@@ -38,7 +41,5 @@ async def load(ctx, extension):
 async def reload(ctx, extension):
     if ctx.author.id == 510786265311084544:
         bot.reload_extension(f"cogs.{extension}")
-
-for 
 
 bot.run(settings['token'])
