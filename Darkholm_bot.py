@@ -1,8 +1,10 @@
 # Импорты
+from os import listdir
+
 import discord
 from discord.ext import commands
+
 from config import settings
-import os
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=settings['prefix'], intents=intents)
@@ -43,7 +45,7 @@ async def unload(ctx, extension):
         bot.unload_extension(f"cogs.{extension}")
 
 
-for filename in os.listdir('cogs'):
+for filename in listdir('cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
