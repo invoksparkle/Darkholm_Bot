@@ -14,8 +14,14 @@ class Dungeons(commands.Cog):
 
     @commands.command(aliases=['подземелье'])
     async def dungeon(self, ctx):
+        """
+
+        :param ctx:
+        """
         await ctx.send("Начинаем сбор для посещения Deep Dark Dungeon")
+
         members = list(ctx.guild.members)
+
         online_members = []
         for member in members:
             if member.raw_status != 'offline' and not member.bot:
