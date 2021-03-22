@@ -1,6 +1,8 @@
 import io
 import random
+from io import BytesIO
 
+import discord
 import numpy as np
 from PIL import Image, ImageDraw
 from discord.ext import commands
@@ -12,7 +14,7 @@ class Dungeons(commands.Cog):
 
     @commands.command(aliases=['подземелье'])
     async def dungeon(self, ctx):
-        # await ctx.send("Начинаем сбор для посещения Deep Dark Dungeon")
+        await ctx.send("Начинаем сбор для посещения Deep Dark Dungeon")
         members = list(ctx.guild.members)
         online_members = []
         for member in members:
@@ -23,7 +25,7 @@ class Dungeons(commands.Cog):
         online_mentions = ''
         for member in online_members:
             online_mentions = online_mentions + ' ' + member.mention
-        # await ctx.send(f"В данжен пойдут {online_mentions}" )
+        await ctx.send(f"В данжен пойдут {online_mentions}")
         avatars = []
         size = (80, 80)
         for member in online_members:
@@ -37,7 +39,16 @@ class Dungeons(commands.Cog):
         for i, item in enumerate(avatars):
             if i == 0:
                 img_dungeon.paste(Image.fromarray(avatars[0]), (105, 25), mask)
-        img_dungeon.show()
+            elif i == 1:
+                img_dungeon.paste(Image.fromarray(avatars[1]), (260, 120), mask)
+            elif i == 2:
+                img_dungeon.paste(Image.fromarray(avatars[2]), (380, 114), mask)
+            elif i == 3:
+                img_dungeon.paste(Image.fromarray(avatars[3]), (436, 52), mask)
+        final = BytesIO()
+        img_dungeon.save(final, format='PNG')
+        final.seek(0)
+        await ctx.send(file=discord.File(fp=final, filename="Подземелье.png"))
 
 
 def setup(bot):
