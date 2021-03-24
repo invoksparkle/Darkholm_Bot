@@ -30,7 +30,7 @@ class Radio(commands.Cog):
             await channel.connect()
         ctx.voice_client.stop()
         ctx.voice_client.play(
-            discord.FFmpegPCMAudio(executable="C:\\ffmpeg\\bin\\ffmpeg.exe", source=url, **Radio.FFMPEG_OPTIONS))
+            discord.FFmpegPCMAudio(source=url, **Radio.FFMPEG_OPTIONS))
 
 
 def setup(bot):
