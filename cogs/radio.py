@@ -27,9 +27,10 @@ class Radio(commands.Cog):
         :type ctx: object
         """
         chose = waves[arg]
-        with youtube_dl.YoutubeDL(Radio.YDL_OPTIONS) as ydl:
-            info = ydl.extract_info(chose, download=False)
-        url = info['formats'][0]['url']
+        if chose is not 'cyberpunk':
+            with youtube_dl.YoutubeDL(Radio.YDL_OPTIONS) as ydl:
+                info = ydl.extract_info(chose, download=False)
+            url = info['formats'][0]['url']
         print(info)
         if ctx.voice_client is None:
             channel = discord.utils.get(ctx.guild.channels, name='Radio')
