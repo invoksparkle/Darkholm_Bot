@@ -27,6 +27,7 @@ class Radio(commands.Cog):
         :type ctx: object
         """
         chose = waves[arg]
+        url = ''
         if chose is not 'cyberpunk':
             with youtube_dl.YoutubeDL(Radio.YDL_OPTIONS) as ydl:
                 info = ydl.extract_info(chose, download=False)
@@ -39,6 +40,7 @@ class Radio(commands.Cog):
         ctx.voice_client.play(
             discord.FFmpegPCMAudio(source=url, **Radio.FFMPEG_OPTIONS))
         await ctx.send(f"Сейчас играет {info['title']}")
+
 
 def setup(bot):
     bot.add_cog(Radio(bot))

@@ -4,10 +4,11 @@ from os import listdir
 import discord
 from discord.ext import commands
 
-from config import settings
+import config
+import secret
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix=settings['prefix'], intents=intents)
+bot = commands.Bot(command_prefix=config.prefix, intents=intents)
 
 
 # Основные кооманды
@@ -49,4 +50,4 @@ for filename in listdir('cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
-bot.run(settings['token'])
+bot.run(secret.token)
