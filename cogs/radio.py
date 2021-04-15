@@ -23,6 +23,7 @@ class Radio(commands.Cog):
     async def radio(self, ctx, arg='gachi'):
         """
 
+        :param arg:
         :type ctx: object
         """
         chose = waves[arg]
@@ -35,7 +36,7 @@ class Radio(commands.Cog):
             await channel.connect()
         ctx.voice_client.stop()
         ctx.voice_client.play(
-            discord.FFmpegPCMAudio(executable='C:\\FFMPEG\\bin\\ffmpeg.exe', source=url, **Radio.FFMPEG_OPTIONS))
+            discord.FFmpegPCMAudio(source=url, **Radio.FFMPEG_OPTIONS))
         await ctx.send(f"Сейчас играет {info['title']}")
 
 def setup(bot):
